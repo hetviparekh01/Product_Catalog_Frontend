@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-group my-3">
+            <label for="productTitle">Product Title</label>
+            <input type="text" class="form-control" id="productTitle" placeholder="Enter product title" formControlName="title">
+        </div>
+        <div class="form-group my-3">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" rows="3" placeholder="Enter product description" formControlName="description"></textarea>
+        </div>
+        <div class="form-group my-3">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" placeholder="Enter price" formControlName="price">
+        </div>
+        <div class="form-group my-3">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" formControlName="categoryId">
+                <option value="" disabled selected>Select category</option>
+                <option *ngFor="let category of categoryData" [value]="category._id">{{category.categoryName}}</option>
+            </select>
+        </div>
+        <div class="form-group my-3">
+            <div class="mb-3">
+                <label for="formFile" class="form-label" >Default file input example</label>
+                <input class="form-control" type="file" id="formFile"  (change)="onSelectedFile($event)" formControlName="imagePath">
+              </div>
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

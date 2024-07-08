@@ -1,0 +1,8 @@
+
+    <select class="form-select" aria-label="Default select example" #categoryName (change)="fileterCategory(categoryName)">
+        <option selected disabled>Open this select menu</option>
+        <option *ngFor="let category of categoryData" [value]="category.categoryName" >{{category.categoryName}}</option>
+    </select>
+    <app-card [contentData]="contentData"></app-card>
+
+
