@@ -1,13 +1,32 @@
 <div class="container mt-5">
     <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="categoryName">Category Name</label>
-            <input type="text" class="form-control" id="categoryName" placeholder="Enter category name" formControlName="categoryName">
+        <div class="form-group mb-4">
+            <label for="categoryName" class="form-label">Category Name</label>
+            <input type="text" class="form-control" id="categoryName" placeholder="Enter category name"
+                formControlName="categoryName"
+                [ngClass]="{ 'is-invalid': categoryForm.get('categoryName')?.invalid && (categoryForm.get('categoryName')?.touched||categoryForm.get('categoryName')?.dirty), 'is-valid':categoryForm.get('categoryName')?.valid}">
+            <div *ngIf="categoryForm.get('categoryName')?.invalid && (categoryForm.get('categoryName')?.touched||categoryForm.get('categoryName')?.dirty)"
+                class="text-danger">
+                <span *ngIf="categoryForm.get('categoryName')?.errors?.['required']">
+                    Name is required
+                </span>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="3" placeholder="Enter category description" formControlName="description"></textarea>
+        <div class="form-group mb-4">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3" placeholder="Enter category description"
+                formControlName="description"
+                [ngClass]="{ 'is-invalid': categoryForm.get('description')?.invalid && (categoryForm.get('description')?.touched||categoryForm.get('description')?.dirty), 'is-valid':categoryForm.get('description')?.valid}"></textarea>
+            <div *ngIf="categoryForm.get('description')?.invalid && (categoryForm.get('description')?.touched||categoryForm.get('description')?.dirty)"
+                class="text-danger">
+                <span *ngIf="categoryForm.get('description')?.errors?.['required']">
+                    Description is required
+                </span>
+            </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <div class="mt-5">
+        <app-datatable [rowData]="categoryData" [colDefs]="columnDefs"></app-datatable>
+    </div>
 </div>

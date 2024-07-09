@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
 })
 export class NavbarComponent {
   constructor(private ls:LocalstorageService,private route:Router){}
-  role:string=this.ls.getRole() as string
+  role:string=this.ls.getRole() as string;
+  name:string=this.ls.getName() as string
   logOut() {
     this.ls.clearLocalstorage()
      this.route.navigate(['/auth/login'])

@@ -22,6 +22,14 @@ const routes: Routes = [
     path:"addcategory",
     component:AddCategoryComponent
   },
+  {
+    path:"updateproduct/:id",
+    component:AddProductComponent
+  },
+  {
+    path:"updatecategory/:id",
+    component:AddCategoryComponent
+  },
 ];
 
 @NgModule({

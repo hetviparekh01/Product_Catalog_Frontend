@@ -2,30 +2,67 @@
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <div class="form-group my-3">
             <label for="productTitle">Product Title</label>
-            <input type="text" class="form-control" id="productTitle" placeholder="Enter product title" formControlName="title">
+            <input type="text" class="form-control" id="productTitle" placeholder="Enter product title"
+                formControlName="title"
+                [ngClass]="{ 'is-invalid': productForm.get('title')?.invalid && (productForm.get('title')?.touched||productForm.get('title')?.dirty), 'is-valid':productForm.get('title')?.valid}">
+            <div *ngIf="productForm.get('title')?.invalid && (productForm.get('title')?.touched||productForm.get('title')?.dirty)"
+                class="text-danger">
+                <span *ngIf="productForm.get('title')?.errors?.['required']">
+                    Name is required
+                </span>
+            </div>
         </div>
         <div class="form-group my-3">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" rows="3" placeholder="Enter product description" formControlName="description"></textarea>
+            <textarea class="form-control" id="description" rows="3" placeholder="Enter product description"
+                formControlName="description"
+                [ngClass]="{ 'is-invalid': productForm.get('description')?.invalid && (productForm.get('description')?.touched||productForm.get('description')?.dirty), 'is-valid':productForm.get('description')?.valid}"></textarea>
+            <div *ngIf="productForm.get('description')?.invalid && (productForm.get('description')?.touched||productForm.get('description')?.dirty)"
+                class="text-danger">
+                <span *ngIf="productForm.get('description')?.errors?.['required']">
+                    Description is required
+                </span>
+            </div>
         </div>
         <div class="form-group my-3">
             <label for="price">Price</label>
-            <input type="number" class="form-control" id="price" placeholder="Enter price" formControlName="price">
+            <input type="number" class="form-control" id="price" placeholder="Enter price" formControlName="price"
+                [ngClass]="{ 'is-invalid': productForm.get('price')?.invalid && (productForm.get('price')?.touched||productForm.get('price')?.dirty), 'is-valid':productForm.get('price')?.valid}">
+            <div *ngIf="productForm.get('price')?.invalid && (productForm.get('price')?.touched||productForm.get('price')?.dirty)"
+                class="text-danger">
+                <span *ngIf="productForm.get('price')?.errors?.['required']">
+                    Price is required
+                </span>
+            </div>
         </div>
         <div class="form-group my-3">
             <label for="category">Category</label>
-            <select class="form-control" id="category" formControlName="categoryId">
+            <select class="form-control" id="category" formControlName="categoryId"
+                [ngClass]="{ 'is-invalid': productForm.get('categoryId')?.invalid && (productForm.get('categoryId')?.touched||productForm.get('categoryId')?.dirty), 'is-valid':productForm.get('categoryId')?.valid}">
+                <div *ngIf="productForm.get('categoryId')?.invalid && (productForm.get('categoryId')?.touched||productForm.get('categoryId')?.dirty)"
+                    class="text-danger">
+                    <span *ngIf="productForm.get('categoryId')?.errors?.['required']">
+                        Category is required
+                    </span>
+                </div>
                 <option value="" disabled selected>Select category</option>
                 <option *ngFor="let category of categoryData" [value]="category._id">{{category.categoryName}}</option>
             </select>
         </div>
         <div class="form-group my-3">
             <div class="mb-3">
-                <label for="formFile" class="form-label" >Default file input example</label>
-                <input class="form-control" type="file" id="formFile"  (change)="onSelectedFile($event)" formControlName="imagePath">
-              </div>
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input class="form-control" type="file" id="formFile" (change)="onSelectedFile($event)"
+                    formControlName="imagePath"
+                    [ngClass]="{ 'is-invalid': productForm.get('imagePath')?.invalid && (productForm.get('imagePath')?.touched||productForm.get('imagePath')?.dirty), 'is-valid':productForm.get('imagePath')?.valid}">
+                <div *ngIf="productForm.get('imagePath')?.invalid && (productForm.get('imagePath')?.touched||productForm.get('imagePath')?.dirty)"
+                    class="text-danger">
+                    <span *ngIf="productForm.get('imagePath')?.errors?.['required']">
+                        Image is required
+                    </span>
+                </div>
+            </div>
         </div>
-       
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>

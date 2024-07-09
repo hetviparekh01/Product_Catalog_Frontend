@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 
 @Component({
   selector: 'app-card',
@@ -7,4 +8,11 @@ import { Component, Input } from '@angular/core';
 })
 export class CardComponent {
   @Input() contentData:any;
+  @Output() deleteFn=new EventEmitter<any>();
+  
+  constructor(private ls:LocalstorageService){}
+  deleteData(contentId:string){
+    this.deleteFn.emit(contentId);
+  }
+  role:string=this.ls.getRole() as string
 }
