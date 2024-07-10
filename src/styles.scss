@@ -2,3 +2,11 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 /* Quartz Theme Specific CSS */
 @import 'ag-grid-community/styles/ag-theme-quartz.css';
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
+*{
+    overflow: hidden;
+    font-family: "Signika Negative", sans-serif;
+    font-optical-sizing: auto;
+    // font-weight: <weight>;
+    // font-style: normal;;
+}
