@@ -15,7 +15,7 @@ import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ]
 })
 export class LayoutModule { }

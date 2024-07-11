@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class SignupComponent {
   signupForm!: FormGroup;
+  selectedFile!:File;
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -18,11 +19,21 @@ export class SignupComponent {
       email: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required])],
       role: ['', Validators.compose([Validators.required])],
+      profileImage:['',Validators.compose([Validators.required])]
     })
+  }
+  onSelectedFile(event:any){
+    this.selectedFile=event.target.files[0]
   }
   onSubmit() {
     if (this.signupForm.valid) {
-      this.authService.signup(this.signupForm.value).subscribe({
+       const form = new FormData();
+       form.append('name', this.signupForm.get('name')?.value);
+       form.append('email', this.signupForm.get('email')?.value);
+       form.append('password', this.signupForm.get('password')?.value);
+       form.append('role', this.signupForm.get('role')?.value);
+       form.append('profileImage', this.selectedFile);
+      this.authService.signup(form).subscribe({
         next: (response: any) => {
           if(response.status){
             Swal.fire({

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalstorageService } from 'src/app/core/services/localstorage.service';
+import { UserServiceService } from 'src/app/core/services/user-service.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -8,8 +9,11 @@ import Swal from 'sweetalert2';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
-  constructor(private ls:LocalstorageService,private route:Router){}
+export class NavbarComponent implements OnInit {
+  constructor(private ls:LocalstorageService,private route:Router,private userService:UserServiceService){}
+  ngOnInit(): void {
+    
+  }
   role:string=this.ls.getRole() as string;
   name:string=this.ls.getName() as string
   logOut() {
@@ -22,4 +26,6 @@ export class NavbarComponent {
       timer: 1500,
     });
   }
+
+
 }

@@ -1,7 +1,7 @@
 <div class="row justify-content-center align-items-center my-5">
     <div class="col-3">
         <select class="form-select" aria-label="Default select example" #categoryName (change)="fileterCategory(categoryName)">
-            <option selected disabled>Open this select menu</option>
+            <option selected disabled>Select Category</option>
             <option *ngFor="let category of categoryData" [value]="category.categoryName">{{category.categoryName}}</option>
         </select>
     </div>

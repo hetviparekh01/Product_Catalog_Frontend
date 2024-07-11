@@ -9,7 +9,7 @@ export class AuthService {
   apiUrl: string = "http://localhost:3000/user/"
   constructor(private http: HttpClient) { }
 
-  signup(userData: IUser) {
+  signup(userData: FormData) {
     return this.http.post<any>(`${this.apiUrl}signup`, userData)
   }
   login(userData: IUser) {

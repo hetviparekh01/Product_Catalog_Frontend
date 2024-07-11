@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5 min-vh-100">
     <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
         <div class="form-group mb-4">
             <label for="categoryName" class="form-label">Category Name</label>
@@ -24,7 +24,7 @@
                 </span>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn " style="background-color:rgb(143, 86, 0); color: white;">Submit</button>
     </form>
     <div class="mt-5">
         <app-datatable [rowData]="categoryData" [colDefs]="columnDefs"></app-datatable>
