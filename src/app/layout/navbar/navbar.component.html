@@ -7,15 +7,10 @@
     <div class="ms-auto order-lg-last">
       <!-- <i class="fa-solid fa-user mx-2" style="color:rgb(143, 86, 0) ;"></i><span class="me-3"
         style="color:rgb(143, 86, 0) ;">{{name}}</span> -->
-      <img src="http://localhost:3000/public/{{userData?.profileImage}}" class="rounded-circle" width="45px"
-        height="30px" data-bs-toggle="modal" data-bs-target="#modalId"><span class="me-3" style="color:rgb(143, 86, 0) ;">{{name}}</span>
-      <!-- Modal trigger button -->
-      <!-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId">
-        Launch
-      </button> -->
-
+      <img src="http://localhost:3000/public/{{userData?.profileImage}}" class="rounded-circle" width="50px"
+        height="45px" data-bs-toggle="modal" data-bs-target="#modalId"><span class="me-3"
+        style="color:rgb(143, 86, 0) ;">{{name}}</span>
       <!-- Modal Body -->
-      <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
       <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
         role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
@@ -24,32 +19,34 @@
               <h5 class="modal-title" id="modalTitleId">
                 Update Profile
               </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetPreviewImage()"></button>
             </div>
             <div class="modal-body">
-              <div class="row">
-                <img src="http://localhost:3000/public/{{userData?.profileImage}}" class="rounded-circle " width="60px"
-                  height="100px" for="imageUpload">
-              </div>
-              <div class="row mx-auto">
-                <div class="form-group">
-                  <!-- Hidden File Input -->
-                  <input type="file" class="custom-file-input" id="imageUpload" hidden="true"> 
-                  <!-- Button Styled as Label -->
-                  <label class="btn btn-primary btn-sm" for="imageUpload">Change Image</label>
-              </div>
+              <div class="row justify-content-center">
+                <label for="imageUpload">
+                  <img src="{{temporaryURL}}" class="rounded-circle"
+                    height="120px" style="width: 150px; cursor: pointer;" #previewImage>
+                </label>
+                <!-- <input type="file" id="imageUpload" style="display: none;" #profile (change)="loadFile(profile)" /> -->
+                <input type="file" id="imageUpload" style="display: none;" (change)="loadFile($event, previewImage)" />
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetPreviewImage()">
                 Close
               </button>
-              <button type="button" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-primary" (click)="UpdateProfile()">Save</button>
             </div>
           </div>
         </div>
       </div>
-
+      <!-- <div class="row mx-auto"> -->
+      <!-- <div class="form-group d-flex justify-content-center mt-3"> -->
+      <!-- Hidden File Input -->
+      <!-- <input type="file" class="custom-file-input" id="imageUpload" hidden="true" (change)="onSelectedFile($event)" >  -->
+      <!-- <label class="btn btn-primary btn-sm" for="imageUpload">Change Image</label> -->
+      <!-- </div> -->
+      <!-- </div> -->
       <!-- Optional: Place to the bottom of scripts -->
       <script>
         const myModal = new bootstrap.Modal(
