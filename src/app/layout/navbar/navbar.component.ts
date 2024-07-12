@@ -10,12 +10,29 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private ls:LocalstorageService,private route:Router,private userService:UserServiceService){}
-  ngOnInit(): void {
-    
-  }
+  userData:any;
   role:string=this.ls.getRole() as string;
   name:string=this.ls.getName() as string
+  constructor(private ls:LocalstorageService,private route:Router,private userService:UserServiceService){}
+  ngOnInit() {
+    this.getParticualrUser()
+  }
+
+  getParticualrUser(){
+    this.userService.getParticularUser().subscribe({
+        next:(response)=>{
+          this.userData=response.content
+        },
+        error:(error)=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: error.error.content,
+          })
+        }
+    })
+  }
+
   logOut() {
     this.ls.clearLocalstorage()
      this.route.navigate(['/auth/login'])
@@ -26,6 +43,5 @@ export class NavbarComponent implements OnInit {
       timer: 1500,
     });
   }
-
 
 }

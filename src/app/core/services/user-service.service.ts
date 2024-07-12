@@ -9,6 +9,10 @@ export class UserServiceService {
   constructor(private http: HttpClient) {}
 
   getParticularUser(){
-    return this.http.get<any>(`${this.apiUrl}/getparticularuser`)
+    return this.http.get<any>(`${this.apiUrl}getparticularuser`)
+  }
+
+  updateParticularUser(userData:FormData){
+    return this.http.put<any>(`${this.apiUrl}updateparticularuser`,userData)
   }
 }
