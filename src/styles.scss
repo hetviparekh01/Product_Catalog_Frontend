@@ -4,6 +4,7 @@
 @import 'ag-grid-community/styles/ag-theme-quartz.css';
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
 @import "~@fortawesome/fontawesome-free/css/all.css";
+@import 'ngx-toastr/toastr';
 *{
     overflow-x: hidden;
     font-family: "Signika Negative", sans-serif;
